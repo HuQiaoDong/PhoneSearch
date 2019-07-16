@@ -9,11 +9,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import java.io.IOException;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 
@@ -43,21 +41,6 @@ public class MainActivity extends AppCompatActivity {
                         .execute(new StringCallback() {
                             @Override
                             public void onSuccess(String jsonData, Call call, Response response) {
-                                //    Toast.makeText(MainActivity.this,s.toString(),Toast.LENGTH_SHORT).show();
-//                                tvShow.setText(jsonData.toString());
-//                                      parseJSONWithGSON(s,);
-                         /*      // json解析器，解析json数据
-                                JsonParser parser = new JsonParser();
-                                JsonElement element = parser.parse(jsonData);
-                                // json属于对象类型时
-                                if (element.isJsonObject()) {
-                                    JsonObject object = element.getAsJsonObject();  // 转化为对象
-
-                                    JsonObject response1=object.getAsJsonObject("response");
-                                    JsonObject Tel=response1.getAsJsonObject("tel");
-                                    String location=Tel.get("location").getAsString();
-
-                                }*/
                                 jsontojava(jsonData,etText.getText().toString());
                             }
                         });
@@ -72,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         // json属于对象类型时
         if (element.isJsonObject()) {
             JsonObject object = element.getAsJsonObject();  // 转化为对象
-
             JsonObject response=object.getAsJsonObject("response");
             JsonObject Tel=response.getAsJsonObject(tel);
             String location=Tel.get("location").getAsString();
